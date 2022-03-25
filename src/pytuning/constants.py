@@ -30,8 +30,8 @@ five_limit_constructors = [
 ]
 
 edo12_constructors = [
-    (sp.power.Pow(2,sp.Rational(2,12)), "T"),
-    (sp.power.Pow(2,sp.Rational(1,12)), "s"),
+    (sp.Pow(2,sp.Rational(2,12)), "T"),
+    (sp.Pow(2,sp.Rational(1,12)), "s"),
 ]
 
 lucy_L = sp.root(2,2*sp.pi)

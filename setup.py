@@ -13,7 +13,7 @@ setup(name='PyTuning',
       url='https://github.com/MarkCWirt/PyTuning',
       packages=find_packages(where="src"),
       scripts=['src/pytuning/interactive.py'],
-      install_requires = ['sympy', 'numpy'],
+      install_requires = ['sympy>=1.10.1', 'numpy', 'scikit-learn'],
       package_dir = {'': 'src'},
       package_data={
           '' : ['README.rst', 'License.txt', 'docs/*'],
@@ -31,6 +31,6 @@ setup(name='PyTuning',
             'Topic :: Multimedia :: Sound/Audio :: Analysis',
             'Topic :: Software Development :: Libraries :: Python Modules',
           ],
-      keywords = 'Music Scales Tuning Microtonalities',
+      keywords = 'Music Scales Tuning Microtonality',
       long_description=long_description
      )
