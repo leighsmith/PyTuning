@@ -4,3 +4,4 @@ dist
 build
 _build
 .ipynb_checkpoints
+.python-version
