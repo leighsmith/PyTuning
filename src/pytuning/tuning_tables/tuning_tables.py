@@ -272,12 +272,11 @@ def create_scala_tuning(scale, name):
     output = output + "\n%3d" % (len(scale) -1)
     output = output + "\n!"
     for degree in scale[1:]:
-        #print degree
-        #print type(degree)
-        if type(degree) == sp.numbers.Rational and type(sp.fraction(degree)[0]) == sp.numbers.Integer and \
-            type(sp.fraction(degree)[1]) == sp.numbers.Integer:
+        # print(degree, type(degree))
+        if type(degree) == sp.core.numbers.Rational and type(sp.fraction(degree)[0]) == sp.core.numbers.Integer and \
+            type(sp.fraction(degree)[1]) == sp.core.numbers.Integer:
                 representation = "%s" % degree
-        elif type(degree) == sp.numbers.Integer or type(degree) == sp.numbers.One:
+        elif type(degree) == sp.core.numbers.Integer or type(degree) == sp.core.numbers.One:
             representation = "%s/1" % degree
         else:
             representation = "%0.5f" % ratio_to_cents(degree)
