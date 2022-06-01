@@ -28,8 +28,8 @@ def create_diatonic_scale(generators, specification):
     .. code:: python
     
         edo12_constructors = [
-            (sp.power.Pow(2,sp.Rational(2,12)), "T"),
-            (sp.power.Pow(2,sp.Rational(1,12)), "s"),
+            (sp.Pow(2,sp.Rational(2,12)), "T"),
+            (sp.Pow(2,sp.Rational(1,12)), "s"),
         ]
         
     We can then create the standard major mode with:

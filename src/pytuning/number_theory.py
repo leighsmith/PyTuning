@@ -136,6 +136,6 @@ def create_ratio_from_primes(factors):
         internal_factors = factors
     output = sp.Integer(1)
     for k, v in internal_factors.items():
-        output = output * sp.power.Pow(k, v)
+        output = output * sp.Pow(k, v)
     return output
 

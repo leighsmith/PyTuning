@@ -89,8 +89,8 @@ and semi-tone of a 31-EDO scale:
 .. code:: python
 
   edo31_constructors = [
-      (sp.power.Pow(2,sp.Rational(2,31)), "T"), # a tone
-      (sp.power.Pow(2,sp.Rational(1,31)), "s"), # a semitone
+      (sp.Pow(2,sp.Rational(2,31)), "T"), # a tone
+      (sp.Pow(2,sp.Rational(1,31)), "s"), # a semitone
   ]
 
 (Note that the tone is just twice the semitone, so we could probably get by with
