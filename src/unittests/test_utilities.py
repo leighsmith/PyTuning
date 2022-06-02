@@ -54,8 +54,8 @@ class TestUtilities(unittest.TestCase):
         
     def test_distinct_intervals(self):
         self.assertListEqual([sp.sqrt(2)], distinct_intervals(create_edo_scale(2)))
-        self.assertTrue(sp.power.Pow(2, sp.Rational(1,3)) in distinct_intervals(create_edo_scale(3)))
-        self.assertTrue(sp.power.Pow(2, sp.Rational(2,3)) in distinct_intervals(create_edo_scale(3)))
+        self.assertTrue(sp.Pow(2, sp.Rational(1,3)) in distinct_intervals(create_edo_scale(3)))
+        self.assertTrue(sp.Pow(2, sp.Rational(2,3)) in distinct_intervals(create_edo_scale(3)))
         
     def test_mode_masks(self):
         masks = [(0, 1, 6), (0, 2, 6), (0, 3, 6), (0, 4, 6), (0, 5, 6)]

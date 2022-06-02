@@ -292,8 +292,8 @@ def find_factors(interval, constructors, max_terms=8):
         .. code::
         
             edo12_constructors = [
-                (sp.power.Pow(2,sp.Rational(2,12)), "T"), # a tone
-                (sp.power.Pow(2,sp.Rational(1,12)), "s"), # a semi-tone
+                (sp.Pow(2,sp.Rational(2,12)), "T"), # a tone
+                (sp.Pow(2,sp.Rational(1,12)), "s"), # a semi-tone
             ]
             
         If, for example, we wanted to try to match a perfect

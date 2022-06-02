@@ -1,2 +1,7 @@
 matplotlib
 seaborn
+jupyterlab
+Sphinx>=1.4.3
+numpy
+sympy>=1.10.1
+
