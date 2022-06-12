@@ -14,10 +14,11 @@ class TuningTable(object):
     cents_pattern = re.compile('([0-9]*\.[0-9]*)')
     rational_pattern = re.compile('([0-9]* *\/ *[0-9]*)')
     
-    def __init__(self):
-        self.description = ''
-        self.scale = []
-        self.reference_note = None
+    def __init__(self, scale = None, description = '', reference_note = 69, reference_frequency = 440.0):
+        self.description = description
+        self.scale = [] if scale is None else scale
+        self.reference_note = reference_note
+        self.reference_frequency = reference_frequency
 
     def __repr__(self):
         return "<{} {} {}>".format(self.__class__.__name__, self.scale, self.description)
@@ -67,7 +68,37 @@ class TuningTable(object):
             return True
         return False
 
-    def write_file(self, file_path, format = 'Scala'):
+    def create_scala_kbm(self):
+        """
+        Create a Scala KBM keyboard mapping file.
+        """
+        notes_per_octave = len(self.scale)-1
+        keyboard_mapping = f"""! Template for a keyboard mapping for {self.description}
+!
+! Size of map. The pattern repeats every so many keys:
+{len(self.scale)-1}
+! First MIDI note number to retune:
+20
+! Last MIDI note number to retune:
+117
+! Middle note where the first entry of the mapping is mapped to:
+60
+! Reference note for which frequency is given:
+{self.reference_note}
+! Frequency to tune the above note to:
+{self.reference_frequency}
+! Scale degree to consider as formal octave (determines difference in pitch
+! between adjacent mapping patterns):
+{notes_per_octave}
+! Mapping.
+! The numbers represent scale degrees mapped to keys. The first entry is for
+! the given middle note, the next for subsequent higher keys.
+! For an unmapped key, put in an "x". At the end, unmapped keys may be left out.
+"""
+        keyboard_mapping += '\n'.join([str(note_number) for note_number in range(notes_per_octave)])
+        return keyboard_mapping
+
+    def write_file(self, file_path, format = 'Scala', keyboard_file_path = None):
         """
         Writes the tuning table to the named file according to the format:
         
@@ -76,9 +107,11 @@ class TuningTable(object):
         - 'Csound': Csound tuning declarations.
         - 'Fluidsynth': Fluidsynth tuning file format.
         """
+        kbm_file_contents = ''  # Default to no KBM
         # Generate the output as a string, then write it.
         if format == 'Scala':
             file_contents = create_scala_tuning(self.scale, self.description)
+            kbm_file_contents = self.create_scala_kbm()
         elif format == 'Timidity':
             file_contents = create_timidity_tuning(self.scale, self.reference_note)
         elif format == 'Csound':
@@ -90,5 +123,9 @@ class TuningTable(object):
         with open(file_path, 'w') as file_handle:
             file_handle.write(file_contents)
             file_handle.write('\n') # Write final newline.
+        if keyboard_file_path is not None:
+            with open(keyboard_file_path, 'w') as file_handle:
+                file_handle.write(kbm_file_contents)
+                file_handle.write('\n') # Write final newline.
         return True
 
