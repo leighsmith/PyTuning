@@ -7,8 +7,17 @@ from pytuning.tuning_tables import *
 
 class TuningTable(object):
     """
-    Represents a set of tuned pitches within a tuning system.
-    Provides I/O methods for different tuning table formats.
+    Represents a set of tuned pitches within a tuning system. This consists of a scale, together with "anchoring"
+    parameters, such as the reference note. Provides I/O methods for different tuning table formats.
+
+    :param scale: The scale to be used to construct the tuning table. A list of rational or floating point values.
+    :type scale: list(sp.core.numbers)
+    :param description: The textual description of the scale and it's tuning system.
+    :type description: str
+    :param reference_note: The MIDI note number that is used as a datum starting pitch for the tuning scale.
+    :type reference_note: int
+    :param reference_frequency: The frequency in Hertz of the starting pitch of the tuning scale.
+    :type reference_frequency: float
     """
 
     cents_pattern = re.compile('([0-9]*\.[0-9]*)')
