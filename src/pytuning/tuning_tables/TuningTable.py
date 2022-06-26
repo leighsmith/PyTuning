@@ -79,7 +79,7 @@ class TuningTable(object):
 
     def create_scala_kbm(self):
         """
-        Create a Scala KBM keyboard mapping file.
+        Create a [Scala KBM keyboard mapping file](https://www.huygens-fokker.org/scala/help.htm#mappings).
         """
         notes_per_octave = len(self.scale)-1
         keyboard_mapping = f"""! Template for a keyboard mapping for {self.description}
