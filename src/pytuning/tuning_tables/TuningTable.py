@@ -78,11 +78,11 @@ class TuningTable(object):
 ! Size of map. The pattern repeats every so many keys:
 {len(self.scale)-1}
 ! First MIDI note number to retune:
-20
+0
 ! Last MIDI note number to retune:
-117
+127
 ! Middle note where the first entry of the mapping is mapped to:
-60
+{self.reference_note}
 ! Reference note for which frequency is given:
 {self.reference_note}
 ! Frequency to tune the above note to:
